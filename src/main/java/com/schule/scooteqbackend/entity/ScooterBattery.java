@@ -1,9 +1,13 @@
 package com.schule.scooteqbackend.entity;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -14,5 +18,5 @@ public class ScooterBattery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int batteryStatus;
-    private int batteryStatus2;
+    private int bikeBatteryStatus;
 }

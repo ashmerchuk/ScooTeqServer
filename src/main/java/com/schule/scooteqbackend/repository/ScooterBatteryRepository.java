@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ScooterBatteryRepository extends JpaRepository<ScooterBattery, Long> {
     @Query(
-           value = " select battery_status from scooter_battery ORDER BY ID DESC LIMIT 1 ",
+           value = " select * from scooter_battery ORDER BY ID DESC LIMIT 1 ",
            nativeQuery = true
     )
-    int getSqlBatteryStatus();
+   ScooterBattery getSqlBatteryStatus();
 
 }

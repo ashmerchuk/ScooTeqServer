@@ -13,16 +13,27 @@ public class ScooterBatteryController {
     @PostMapping("/saveBattery")
     @CrossOrigin
     public void saveBatteryscooter(@RequestBody ScooterBattery scooterBattery){
+        ScooterBattery scooterBattery1;
 
-        ScooterBattery scooterBattery1 = new ScooterBattery();
+        if(scooterBattery.getId() > 0 ){
+            scooterBattery1 = scooterBatteryRepository.findById(scooterBattery.getId())
+                    .orElseThrow(() -> new IllegalArgumentException(
+                    String.format("can not found scooterBattery ID: "+scooterBattery.getId())
+            ));
+        }else{
+            scooterBattery1 = new ScooterBattery();
+        }
+
+
         scooterBattery1.setBatteryStatus(scooterBattery.getBatteryStatus());
+        scooterBattery1.setBikeBatteryStatus(scooterBattery.getBikeBatteryStatus());
         scooterBatteryRepository.save(scooterBattery1);
 
-        System.out.println("batt "+ scooterBattery1.getBatteryStatus());
     }
     @GetMapping("/getBattery")
     @CrossOrigin
-    public int getScooterBatteryStatus(){
+    public ScooterBattery getScooterBatteryStatus(){
+
         return scooterBatteryRepository.getSqlBatteryStatus();
     }
 
